@@ -39,6 +39,7 @@ run().catch(console.dir);
 
 
 const coffeesCollection = client.db('coffeeDB').collection('coffees');
+const usersCollection = client.db('coffeeDB').collection('users');
 
 app.post('/coffees', async (req, res) => {
   const newCoffee = req.body
@@ -79,6 +80,19 @@ app.delete('/coffees/:id', async (req, res) => {
   res.send(result)
 })
 
+// user api
+app.post('/users', async (req, res) => {
+  const newUser = req.body
+  console.log(newUser)
+  const result = await usersCollection.insertOne(newUser)
+  res.send(result)
+})
+
+app.get('/users', async (req, res) => {
+  const result = await usersCollection.find().toArray();
+  console.log(result)
+  res.send(result);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

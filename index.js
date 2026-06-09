@@ -107,4 +107,6 @@ app.get('/debug', (req, res) => {
   res.send('DEBUG ROUTE WORKS');
 });
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})

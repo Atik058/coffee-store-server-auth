@@ -44,10 +44,7 @@ async function run() {
       res.send(result);
     })
 
-    app.get('/', async (req, res) => {
-      
-      res.send("this is main root");
-    })
+
 
     app.get('/coffees/:id', async (req, res) => {
       const id = req.params.id;
@@ -101,5 +98,13 @@ async function run() {
 }
 run().catch(console.dir);
 
+app.get('/', async (req, res) => {
+
+  res.send("this is main root");
+})
+
+app.get('/debug', (req, res) => {
+  res.send('DEBUG ROUTE WORKS');
+});
 
 module.exports = app;
